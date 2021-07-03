@@ -1,6 +1,7 @@
 # Wemebox
 
-We will be open sourcing wemebox soon!
+
+This repository is far from complete. We have just started adding code into this.
 
 Meanwhile you can report issues in this repository
 
