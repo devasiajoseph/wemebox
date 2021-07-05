@@ -16,17 +16,17 @@
 .*~
 lock
 .emacs.*
+*.doc#
 
 build/
 target/
 .rebel_readline_history
-dbf/
 tmp/
 uploads/
+downloads/
 main
 repl
 repl.go
-csite
 supervisor
 compiled/
 compiled.zip
@@ -34,3 +34,14 @@ bkp/
 id_rsa
 id_rsa.pub
 wemebox
+config.yml
+wfront/resources/public/fcljs-out/
+reset
+sites
+*.zip
+user-ui/
+admin-ui/
+node-modules/
+test-config.yml
+*.code-workspace
+*.dbf
