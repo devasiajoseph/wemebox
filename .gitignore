@@ -44,4 +44,4 @@ admin-ui/
 node-modules/
 test-config.yml
 *.code-workspace
-*.dbf
+*.db
