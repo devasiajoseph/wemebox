@@ -1,3 +1,8 @@
+CREATE TABLE domain(
+       domain_id serial PRIMARY KEY,
+       domain_name varchar(255)
+);
+
 
 CREATE TABLE user_account(
        user_account_id serial PRIMARY KEY,
@@ -8,9 +13,23 @@ CREATE TABLE user_account(
        active BOOLEAN NOT NULL default false,
        created_on TIMESTAMP NOT NULL,
        last_login TIMESTAMP,
-       role VARCHAR (20) not null default 'user'
+       
 );
 
+CREATE TABLE domain_user_role (
+       role_id serial PRIMARY KEY,
+       role VARCHAR (20) not null default 'user'
+       user_account_id integer,
+       domain_id integer,
+       CONSTRAINT user_account_id_fkey FOREIGN KEY (user_account_id)
+       REFERENCES user_account (user_account_id) MATCH SIMPLE 
+       ON DELETE CASCADE,
+       CONSTRAINT domain_id_fkey FOREIGN KEY (domain_id)
+       REFERENCES domain (domain_id) MATCH SIMPLE 
+       ON DELETE CASCADE
+
+
+);
 
 
 create table tag (

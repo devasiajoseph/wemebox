@@ -1,7 +1,9 @@
 package main
 
 import (
+	"crypto/tls"
 	"flag"
+	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -9,12 +11,18 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/NYTimes/gziphandler"
+	"github.com/devasiajoseph/wemebox/core"
+	"github.com/devasiajoseph/wemebox/website"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
+	"golang.org/x/crypto/acme/autocert"
 )
 
 var SKey = "JPcT1k6SwyqA2JX-oyGjGfOfHzKsN2BQdI4Cr56KG9M="
 var StaticUrl = "/static"
+var staticPath = AbsolutePath("static")
+var certsPath = AbsolutePath("certs")
 
 type Paths struct {
 	DirPath   string
@@ -65,6 +73,8 @@ type PageData struct {
 func RenderPageTemplate(w http.ResponseWriter, page string, pd PageData) {
 	paths := Paths{DirPath: BinPath, StaticUrl: StaticUrl}
 	pagePath := PagePath(paths.DirPath, page)
+	fmt.Println(PagePath(paths.DirPath, "base.html"))
+	fmt.Println(pagePath)
 	tmpl, err := template.ParseFiles(PagePath(paths.DirPath, "base.html"), pagePath)
 	if err != nil {
 		log.Println("Template error")
@@ -94,7 +104,57 @@ func NewsHandler(w http.ResponseWriter, r *http.Request) {
 	RenderPageTemplate(w, "home.html", page)
 }
 
+func AddMultiRoutes(r *mux.Router) {
+	fs := gziphandler.GzipHandler(http.FileServer(http.Dir(staticPath)))
+	s := http.StripPrefix("/static/", fs)
+	r.PathPrefix("/static/").Handler(s)
+}
+
+func StartMultiHttps(r *mux.Router) {
+	log.Println("Starting Secure webserver at port 80")
+	AddMultiRoutes(r)
+
+	certManager := autocert.Manager{
+		Prompt: autocert.AcceptTOS,
+		Cache:  autocert.DirCache(certsPath),
+	}
+
+	protectionMiddleware := func(handler http.Handler) http.Handler {
+		protectionFn := csrf.Protect(
+			[]byte(core.SKey),
+			csrf.Secure(core.Secure),
+		)
+
+		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+			// Use some kind of condition here to see if the router should use
+			// the CSRF protection. For the sake of this example, we'll check
+			// the path prefix.
+			if !strings.HasPrefix(r.URL.Path, "/webhooks") {
+				protectionFn(handler).ServeHTTP(w, r)
+				return
+			}
+
+			handler.ServeHTTP(w, r)
+		})
+	}
+
+	server := &http.Server{
+		Addr:    ":443",
+		Handler: protectionMiddleware(r),
+		TLSConfig: &tls.Config{
+			GetCertificate: certManager.GetCertificate,
+		},
+	}
+
+	go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
+	err := server.ListenAndServeTLS("", "")
+	if err != nil {
+		log.Println(err)
+	}
+}
+
 func main() {
+	website.Init()
 	r := mux.NewRouter()
 	r.HandleFunc("/", HomeHandler)
 	r.HandleFunc("/news/{slug}", NewsHandler)

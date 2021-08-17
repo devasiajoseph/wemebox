@@ -1,4 +1,4 @@
-package page
+package website
 
 import (
 	"time"
@@ -14,6 +14,8 @@ type Page struct {
 	PageHTML     string    `db:"page_html" json:"page_html"`
 	PageSlug     string    `db:"page_slug" json:"page_slug"`
 	LastEdited   time.Time `db:"last_edited" json:"last_edited"`
+	DomainID     int       `db:"domain_id" json:"domain_id"`
+	CSRF         string
 }
 
 type Blog struct {
@@ -25,4 +27,9 @@ type Blog struct {
 	LastEdited    time.Time `db:"last_edited" json:"last_edited"`
 	UserAccountID int       `db:"user_account_id" json:"UserAccountID"`
 	Author        uauth.UserAccount
+}
+
+type Domain struct {
+	DomainID   int    `db:"domain_id" json:"domain_id"`
+	DomainName string `db:"domain_name" json:"domain_name"`
 }

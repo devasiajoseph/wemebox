@@ -7,8 +7,60 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/gorilla/mux"
+	"github.com/spf13/viper"
 )
+
+type ServerConfig struct {
+	Port        int
+	URL         string
+	Compress    bool
+	Domain      string
+	Dev         bool
+	Ssl         bool
+	MailDomain  string
+	MailPKey    string
+	SQLDBName   string
+	SQLUser     string
+	SQLPassword string
+	SQLHost     string
+	SQLPort     string
+	StripeKey   string
+	AppEmail    string
+	AppName     string
+	LocalHost   string
+}
+
+var Secure bool
+
+var Config ServerConfig
+
+func SetupConfig() {
+	if flag.Lookup("test.v") == nil {
+		viper.AddConfigPath(BinPath)
+		viper.SetConfigName("config")
+	} else {
+		log.Println("Testing.......")
+		viper.AddConfigPath("./")
+		viper.SetConfigName("test-config")
+	}
+
+	if err := viper.ReadInConfig(); err != nil {
+		log.Fatalf("Error reading config file, %s", err)
+	}
+	err := viper.Unmarshal(&Config)
+
+	if err != nil {
+		log.Fatalf("unable to decode into struct, %v", err)
+	}
+	//Set env
+	if Config.Dev {
+		Secure = false
+
+	} else {
+		Secure = true
+	}
+
+}
 
 var SKey = "JPcT1k6SwyqA2JX-oyGjGfOfHzKsN2BQdI4Cr56KG9M="
 var StaticUrl = "/static"
@@ -47,7 +99,3 @@ func PagePath(dirPath string, spage string) string {
 
 var BinPath = BinaryPath()
 var StaticDir = AbsolutePath("static")
-
-func Start(r *mux.Router) {
-
-}

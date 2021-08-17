@@ -1,6 +1,7 @@
-package page
+package website
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -10,17 +11,18 @@ import (
 	"github.com/gorilla/mux"
 )
 
-type PageData struct {
-	Title   string
-	Content string
-
+type Object struct {
+	Title    string
+	Content  string
 	CSRF     string
 	PageData interface{}
 }
 
-func RenderPageTemplate(w http.ResponseWriter, page string, base string, pd PageData) {
+func RenderPageTemplate(w http.ResponseWriter, page string, base string, pd Object) {
 	paths := core.Paths{DirPath: core.BinPath, StaticUrl: core.StaticUrl}
 	pagePath := core.PagePath(paths.DirPath, page)
+	fmt.Println(core.PagePath(paths.DirPath, base))
+	fmt.Println(pagePath)
 	tmpl, err := template.ParseFiles(core.PagePath(paths.DirPath, base), pagePath)
 	if err != nil {
 		log.Println("Template error")
@@ -33,7 +35,7 @@ func RenderPageTemplate(w http.ResponseWriter, page string, base string, pd Page
 }
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
-	page := PageData{
+	page := Object{
 		Title: "Home page", Content: "Home page content",
 	}
 	RenderPageTemplate(w, "home.html", "base.html", page)
