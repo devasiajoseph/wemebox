@@ -1,13 +1,11 @@
 package website
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
 	"text/template"
 
-	"github.com/devasiajoseph/wemebox/core"
 	"github.com/gorilla/mux"
 )
 
@@ -18,27 +16,37 @@ type Object struct {
 	PageData interface{}
 }
 
-func RenderPageTemplate(w http.ResponseWriter, page string, base string, pd Object) {
-	paths := core.Paths{DirPath: core.BinPath, StaticUrl: core.StaticUrl}
-	pagePath := core.PagePath(paths.DirPath, page)
-	fmt.Println(core.PagePath(paths.DirPath, base))
-	fmt.Println(pagePath)
-	tmpl, err := template.ParseFiles(core.PagePath(paths.DirPath, base), pagePath)
+func RenderPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
+	//pageData := pd
+	paths := Paths{DirPath: BinPath, StaticUrl: StaticUrl}
+	pagePath := PagePath(paths.DirPath, pd.PageFile)
+	pd.StaticUrl = "/static"
+	//fmt.Println(PagePath(paths.DirPath, pd.BasePageFile))
+	//fmt.Println(pagePath)
+	/*
+		authUser, err := uauth.GetAuthenticatedUser(r)
+		if err == nil {
+			pd.UAuthLoggedIn = true
+			pd.LoggedInUser = authUser.FullName
+		}*/
+
+	tmpl, err := template.ParseFiles(PagePath(paths.DirPath, pd.BasePageFile), pagePath)
 	if err != nil {
 		log.Println("Template error")
 	}
 
 	err = tmpl.Execute(w, pd)
 	if err != nil {
+		log.Println(err)
 		log.Println("Template exe error")
 	}
 }
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
-	page := Object{
+	page := PageData{
 		Title: "Home page", Content: "Home page content",
 	}
-	RenderPageTemplate(w, "home.html", "base.html", page)
+	RenderPageTemplate(w, r, page)
 }
 
 func StaticPage(w http.ResponseWriter, r *http.Request) {

@@ -45,9 +45,3 @@ func PagePath(dirPath string, spage string) string {
 
 var BinPath = BinaryPath()
 var StaticDir = AbsolutePath("static")
-
-type PageData struct {
-	Title    string
-	Content  string
-	PageData interface{}
-}

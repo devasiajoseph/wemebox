@@ -33,3 +33,15 @@ type Domain struct {
 	DomainID   int    `db:"domain_id" json:"domain_id"`
 	DomainName string `db:"domain_name" json:"domain_name"`
 }
+
+type PageData struct {
+	Title         string
+	Content       string
+	PageFile      string
+	BasePageFile  string
+	PageData      interface{}
+	Csrf          string
+	StaticUrl     string
+	UAuthLoggedIn bool
+	LoggedInUser  string
+}
