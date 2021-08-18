@@ -13,6 +13,7 @@ import (
 
 	"github.com/NYTimes/gziphandler"
 	"github.com/devasiajoseph/wemebox/core"
+	"github.com/devasiajoseph/wemebox/website"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
 	"golang.org/x/crypto/acme"
@@ -151,11 +152,8 @@ func StartMultiHttps(r *mux.Router) {
 	}
 }
 
-func StartHttp() {
-	log.Println("Starting  webserver at port 80")
-	r := mux.NewRouter()
-
-	r.HandleFunc("/", HomeHandler)
+func StartHttp(r *mux.Router) {
+	log.Println("Starting  webserver at port 8080")
 
 	//r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(StaticDir))))
 	protectionMiddleware := func(handler http.Handler) http.Handler {
@@ -192,7 +190,7 @@ func main() {
 	//StartHttp()
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", HomeHandler)
-	StartMultiHttps(r)
+	r.HandleFunc("/", website.HomePage)
+	StartHttp(r)
 
 }

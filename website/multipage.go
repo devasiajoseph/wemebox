@@ -8,8 +8,11 @@
 package website
 
 import (
+	"fmt"
+	"log"
 	"net/http"
 	"strings"
+	"text/template"
 )
 
 func DomainDir(r *http.Request) string {
@@ -20,13 +23,44 @@ func DomainDir(r *http.Request) string {
 }
 
 func MultiDir(r *http.Request) string {
-	return BinPath + "/sites/" + DomainDir(r)
+	return BinPath + "/html/" + DomainDir(r)
 }
 
 func MultiStaticUrl(r *http.Request) string {
-	return "/sites/" + DomainDir(r) + "/static"
+	return "/static/" + DomainDir(r)
 }
 
 func GetMultiPaths(r *http.Request) Paths {
 	return Paths{DirPath: MultiDir(r), StaticUrl: MultiStaticUrl(r)}
+}
+
+func MultiPagePath(dirPath string, spage string) string {
+	return FixPathSlash(dirPath + "/" + spage)
+}
+
+func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
+	//pageData := pd
+	paths := Paths{DirPath: MultiDir(r), StaticUrl: MultiStaticUrl(r)}
+	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
+	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
+	pd.StaticUrl = MultiStaticUrl(r)
+	//fmt.Println(PagePath(paths.DirPath, pd.BasePageFile))
+	//fmt.Println(pagePath)
+	/*
+		authUser, err := uauth.GetAuthenticatedUser(r)
+		if err == nil {
+			pd.UAuthLoggedIn = true
+			pd.LoggedInUser = authUser.FullName
+		}*/
+	fmt.Println(pagePath)
+	tmpl, err := template.ParseFiles(basePagePath, pagePath)
+	if err != nil {
+		log.Println("Template error")
+	}
+
+	err = tmpl.Execute(w, pd)
+	if err != nil {
+		log.Println(err)
+		log.Println("Template exe error")
+	}
 }

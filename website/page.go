@@ -44,9 +44,12 @@ func RenderPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
 	page := PageData{
-		Title: "Home page", Content: "Home page content",
+		Title:        "Home page",
+		Content:      "Home page content",
+		PageFile:     "home.html",
+		BasePageFile: "base.html",
 	}
-	RenderPageTemplate(w, r, page)
+	RenderMultiPageTemplate(w, r, page)
 }
 
 func StaticPage(w http.ResponseWriter, r *http.Request) {
