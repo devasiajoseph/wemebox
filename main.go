@@ -13,9 +13,9 @@ import (
 
 	"github.com/NYTimes/gziphandler"
 	"github.com/devasiajoseph/wemebox/core"
-	"github.com/devasiajoseph/wemebox/website"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
+	"golang.org/x/crypto/acme"
 	"golang.org/x/crypto/acme/autocert"
 )
 
@@ -65,9 +65,11 @@ type Page struct {
 }
 
 type PageData struct {
-	Title    string
-	Content  string
-	PageData interface{}
+	Title     string
+	Content   string
+	PageData  interface{}
+	Csrf      string
+	StaticUrl string
 }
 
 func RenderPageTemplate(w http.ResponseWriter, page string, pd PageData) {
@@ -79,9 +81,10 @@ func RenderPageTemplate(w http.ResponseWriter, page string, pd PageData) {
 	if err != nil {
 		log.Println("Template error")
 	}
-
+	pd.StaticUrl = "/static"
 	err = tmpl.Execute(w, pd)
 	if err != nil {
+		log.Println(err)
 		log.Println("Template exe error")
 	}
 }
@@ -97,13 +100,6 @@ func HomeHandler(w http.ResponseWriter, r *http.Request) {
 	RenderPageTemplate(w, "home.html", page)
 }
 
-func NewsHandler(w http.ResponseWriter, r *http.Request) {
-	page := PageData{
-		Title: "News page", Content: "Home page content",
-		PageData: HomePage{HomeContent: "Hello home content"}}
-	RenderPageTemplate(w, "home.html", page)
-}
-
 func AddMultiRoutes(r *mux.Router) {
 	fs := gziphandler.GzipHandler(http.FileServer(http.Dir(staticPath)))
 	s := http.StripPrefix("/static/", fs)
@@ -113,10 +109,10 @@ func AddMultiRoutes(r *mux.Router) {
 func StartMultiHttps(r *mux.Router) {
 	log.Println("Starting Secure webserver at port 80")
 	AddMultiRoutes(r)
-
 	certManager := autocert.Manager{
-		Prompt: autocert.AcceptTOS,
-		Cache:  autocert.DirCache(certsPath),
+		Prompt:     autocert.AcceptTOS,
+		Cache:      autocert.DirCache(certsPath),
+		HostPolicy: autocert.HostWhitelist("wemebox.com", "www.wemebox.com"),
 	}
 
 	protectionMiddleware := func(handler http.Handler) http.Handler {
@@ -142,23 +138,26 @@ func StartMultiHttps(r *mux.Router) {
 		Addr:    ":443",
 		Handler: protectionMiddleware(r),
 		TLSConfig: &tls.Config{
+			//Certificates: nil, // <-- s.ListenAndServeTLS will populate this field
 			GetCertificate: certManager.GetCertificate,
+			NextProtos:     []string{acme.ALPNProto},
 		},
 	}
 
-	go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
+	//go http.ListenAndServe(":80", certManager.HTTPHandler(nil))
 	err := server.ListenAndServeTLS("", "")
 	if err != nil {
 		log.Println(err)
 	}
 }
 
-func main() {
-	website.Init()
+func StartHttp() {
+	log.Println("Starting  webserver at port 80")
 	r := mux.NewRouter()
+
 	r.HandleFunc("/", HomeHandler)
-	r.HandleFunc("/news/{slug}", NewsHandler)
-	r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(StaticDir))))
+
+	//r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(StaticDir))))
 	protectionMiddleware := func(handler http.Handler) http.Handler {
 		protectionFn := csrf.Protect(
 			[]byte(SKey),
@@ -185,4 +184,15 @@ func main() {
 	if err != nil {
 		log.Println(err)
 	}
+}
+
+func main() {
+	//website.Init()
+
+	//StartHttp()
+	r := mux.NewRouter()
+
+	r.HandleFunc("/", HomeHandler)
+	StartMultiHttps(r)
+
 }
