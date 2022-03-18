@@ -12,6 +12,7 @@ import (
 
 	"github.com/NYTimes/gziphandler"
 	"github.com/devasiajoseph/wemebox/core"
+	"github.com/devasiajoseph/wemebox/db/postgres"
 	"github.com/devasiajoseph/wemebox/website"
 	"github.com/gorilla/csrf"
 	"github.com/gorilla/mux"
@@ -183,12 +184,9 @@ func StartHttp(r *mux.Router) {
 }
 
 func main() {
-	//website.Init()
-
-	//StartHttp()
+	core.Start()
+	postgres.InitDB()
 	r := mux.NewRouter()
-
-	//r.HandleFunc("/", website.HomePage)
 	website.AddMultiRoutes(r)
 	StartHttp(r)
 

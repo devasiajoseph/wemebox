@@ -1,4 +1,4 @@
-package db
+package sqlite
 
 import (
 	"log"
@@ -19,6 +19,6 @@ func connectSQLiteDB() *sqlx.DB {
 	return db
 }
 
-func InitSQLiteDB() {
+func InitDB() {
 	DB = connectSQLiteDB()
 }

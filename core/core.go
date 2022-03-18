@@ -99,3 +99,7 @@ func PagePath(dirPath string, spage string) string {
 
 var BinPath = BinaryPath()
 var StaticDir = AbsolutePath("static")
+
+func Start() {
+	SetupConfig()
+}

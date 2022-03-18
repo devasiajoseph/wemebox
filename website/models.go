@@ -1,20 +1,19 @@
 package website
 
 import (
+	"log"
 	"time"
 
+	"github.com/devasiajoseph/wemebox/db/postgres"
 	"github.com/devasiajoseph/wemebox/uauth"
 )
 
 type Page struct {
-	PageID       int       `db:"page_id" json:"page_id"`
-	PageType     string    `db:"page_type" json:"page_type"`
-	PageTitle    string    `db:"page_title" json:"page_title"`
-	PageMarkdown string    `db:"page_markdown" json:"page_markdown"`
-	PageHTML     string    `db:"page_html" json:"page_html"`
-	PageSlug     string    `db:"page_slug" json:"page_slug"`
-	LastEdited   time.Time `db:"last_edited" json:"last_edited"`
-	DomainID     int       `db:"domain_id" json:"domain_id"`
+	PageID       int    `db:"page_id" json:"page_id"`
+	PageSlug     string `db:"page_slug" json:"page_slug"`
+	PageFile     string `db:"page_file" json:"page_file"`
+	BasePageFile string `db:"base_page_file" json:"base_page_file"`
+	DomainID     int    `db:"domain_id" json:"domain_id"`
 	CSRF         string
 }
 
@@ -44,4 +43,15 @@ type PageData struct {
 	StaticUrl     string
 	UAuthLoggedIn bool
 	LoggedInUser  string
+}
+
+func GetPage(slug string) (Page, error) {
+	db := postgres.Db
+	var page Page
+	err := db.Get(&page, "select * from page where url_slug=$1", slug)
+	if err != nil {
+		log.Println("Error getting page")
+		log.Println(err)
+	}
+	return page, err
 }

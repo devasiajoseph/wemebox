@@ -1,10 +1,13 @@
 package website
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
 	"text/template"
+
+	"github.com/devasiajoseph/wemebox/api"
 )
 
 type Object struct {
@@ -41,6 +44,18 @@ func RenderPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
 }
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
+	page := PageData{
+		Title:        "Home page",
+		Content:      "Home page content",
+		PageFile:     "home.html",
+		BasePageFile: "base.html",
+	}
+	RenderMultiPageTemplate(w, r, page)
+}
+
+func SlugPage(w http.ResponseWriter, r *http.Request) {
+	slug := api.Vars(r, "slug")
+	fmt.Println(slug)
 	page := PageData{
 		Title:        "Home page",
 		Content:      "Home page content",

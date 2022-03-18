@@ -8,7 +8,6 @@
 package website
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -52,7 +51,7 @@ func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData
 			pd.UAuthLoggedIn = true
 			pd.LoggedInUser = authUser.FullName
 		}*/
-	fmt.Println(pagePath)
+	//fmt.Println(pagePath)
 	tmpl, err := template.ParseFiles(basePagePath, pagePath)
 	if err != nil {
 		log.Println("Template error")

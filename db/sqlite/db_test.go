@@ -1,4 +1,4 @@
-package db
+package sqlite
 
 import (
 	"log"
@@ -6,7 +6,7 @@ import (
 )
 
 func TestConnect(t *testing.T) {
-	InitSQLiteDB()
+	InitDB()
 	schema := `CREATE TABLE place (
 		country text,
 		city text NULL,
