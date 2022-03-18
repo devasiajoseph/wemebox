@@ -3,7 +3,6 @@ package main
 import (
 	"crypto/tls"
 	"flag"
-	"fmt"
 	"log"
 	"net/http"
 	"os"
@@ -71,14 +70,13 @@ type PageData struct {
 	PageData  interface{}
 	Csrf      string
 	StaticUrl string
+	BasePage  string
 }
 
 func RenderPageTemplate(w http.ResponseWriter, page string, pd PageData) {
 	paths := Paths{DirPath: BinPath, StaticUrl: StaticUrl}
 	pagePath := PagePath(paths.DirPath, page)
-	fmt.Println(PagePath(paths.DirPath, "base.html"))
-	fmt.Println(pagePath)
-	tmpl, err := template.ParseFiles(PagePath(paths.DirPath, "base.html"), pagePath)
+	tmpl, err := template.ParseFiles(PagePath(paths.DirPath, pd.BasePage), pagePath)
 	if err != nil {
 		log.Println("Template error")
 	}
@@ -86,7 +84,7 @@ func RenderPageTemplate(w http.ResponseWriter, page string, pd PageData) {
 	err = tmpl.Execute(w, pd)
 	if err != nil {
 		log.Println(err)
-		log.Println("Template exe error")
+		log.Println("Template execution error")
 	}
 }
 
@@ -190,7 +188,8 @@ func main() {
 	//StartHttp()
 	r := mux.NewRouter()
 
-	r.HandleFunc("/", website.HomePage)
+	//r.HandleFunc("/", website.HomePage)
+	website.AddMultiRoutes(r)
 	StartHttp(r)
 
 }

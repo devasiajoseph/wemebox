@@ -5,8 +5,6 @@ import (
 	"net/http"
 
 	"text/template"
-
-	"github.com/gorilla/mux"
 )
 
 type Object struct {
@@ -54,8 +52,4 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 
 func StaticPage(w http.ResponseWriter, r *http.Request) {
 
-}
-
-func AddRoutes(r *mux.Router) {
-	r.HandleFunc("/", HomePage)
 }
