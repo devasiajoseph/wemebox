@@ -31,6 +31,7 @@ type Blog struct {
 type Domain struct {
 	DomainID   int    `db:"domain_id" json:"domain_id"`
 	DomainName string `db:"domain_name" json:"domain_name"`
+	DomainDir  string `db:"domain_dir" json:"domain_dir"`
 }
 
 type PageData struct {
@@ -45,7 +46,7 @@ type PageData struct {
 	LoggedInUser  string
 }
 
-func GetPage(slug string) (Page, error) {
+func GetDomainPage(slug string, domain string) (Page, error) {
 	db := postgres.Db
 	var page Page
 	err := db.Get(&page, "select * from page where url_slug=$1", slug)

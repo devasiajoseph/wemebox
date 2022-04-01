@@ -14,6 +14,14 @@ import (
 	"text/template"
 )
 
+func GetDomain(r *http.Request) string {
+	hostName := r.Host
+	domain := strings.Replace(hostName, "www.", "", -1)
+	domain = strings.Replace(domain, ":8080", "", -1)
+	return domain
+
+}
+
 func DomainDir(r *http.Request) string {
 	hostName := r.Host
 	domain := strings.Replace(hostName, "www.", "", -1)

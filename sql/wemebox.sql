@@ -1,6 +1,7 @@
 CREATE TABLE domain(
        domain_id serial PRIMARY KEY,
-       domain_name varchar(255)
+       domain_name varchar(255),
+       domain_dir varchar(255)
 );
 
 
@@ -37,8 +38,6 @@ CREATE TABLE domain_user_role (
        CONSTRAINT domain_id_fkey FOREIGN KEY (domain_id)
        REFERENCES domain (domain_id) MATCH SIMPLE 
        ON DELETE CASCADE
-
-
 );
 
 

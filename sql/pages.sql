@@ -1,0 +1,1 @@
+insert into domain (domain_name) values('localhost');
