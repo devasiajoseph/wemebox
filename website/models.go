@@ -9,6 +9,12 @@ import (
 	"github.com/devasiajoseph/wemebox/uauth"
 )
 
+type DomainPage struct {
+	PageFile     string `db:"page_file" json:"page_file"`
+	BasePageFile string `db:"base_page_file" json:"base_page_file"`
+	DomainDir    string `db:"domain_dir" json:"domain_dir"`
+}
+
 type Page struct {
 	PageID       int    `db:"page_id" json:"page_id"`
 	PageSlug     string `db:"page_slug" json:"page_slug"`
@@ -62,14 +68,14 @@ func (d *Domain) Fetch() error {
 	return err
 }
 
-func (p *Page) DomainPage() error {
-	return nil
-}
+var sqlDomainPage = "select domain.domain_dir,page.page_file,page.base_page_file " +
+	"from domain left join page on domain.domain_id=page.domain_id " +
+	"where domain.domain_name=$1 and page.page_slug=$2;"
 
-func GetDomainPage(slug string, domain string) (Page, error) {
+func GetDomainPage(slug string, domain string) (DomainPage, error) {
 	db := postgres.Db
-	var page Page
-	err := db.Get(&page, "select * from page where url_slug=$1", slug)
+	var page DomainPage
+	err := db.Get(&page, sqlDomainPage, domain, slug)
 	if err != nil {
 		log.Println("Error getting page")
 		log.Println(err)
