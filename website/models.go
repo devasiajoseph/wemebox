@@ -2,6 +2,7 @@ package website
 
 import (
 	"log"
+	"strings"
 	"time"
 
 	"github.com/devasiajoseph/wemebox/db/postgres"
@@ -44,6 +45,25 @@ type PageData struct {
 	StaticUrl     string
 	UAuthLoggedIn bool
 	LoggedInUser  string
+}
+
+func (d *Domain) Clean() {
+	d.DomainName = strings.ReplaceAll(d.DomainName, " ", "")
+}
+
+func (d *Domain) Fetch() error {
+	d.Clean()
+	db := postgres.Db
+	err := db.Get(d, "select * from domain where domain_name=$1", d.DomainName)
+	if err != nil {
+		log.Println("Error in getting domain from domain name")
+		log.Println(err)
+	}
+	return err
+}
+
+func (p *Page) DomainPage() error {
+	return nil
 }
 
 func GetDomainPage(slug string, domain string) (Page, error) {
