@@ -1,1 +1,1 @@
-git pull origin main --rebase
+git pull origin master --rebase
