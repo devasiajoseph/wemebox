@@ -51,6 +51,7 @@ type PageData struct {
 	StaticUrl     string
 	UAuthLoggedIn bool
 	LoggedInUser  string
+	Slug          string
 }
 
 func (d *Domain) Clean() {

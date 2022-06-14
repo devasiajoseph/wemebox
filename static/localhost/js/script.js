@@ -18,11 +18,19 @@ if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
     },
   }
 
-  const video = document.querySelector('#video')
+  const video = document.querySelector('#video');
+  function pic(){
+    const canvas = document.querySelector('#canvas')
+    canvas.width = video.videoWidth
+    canvas.height = video.videoHeight
+    canvas.getContext('2d').drawImage(video, 0, 0)
+  }
   async function start(){
     const videoStream =  await navigator.mediaDevices.getUserMedia(constraints);
     video.srcObject = videoStream;
   }
+
+
 
 
   start();

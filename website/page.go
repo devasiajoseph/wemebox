@@ -1,7 +1,6 @@
 package website
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 
@@ -55,12 +54,13 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 
 func SlugPage(w http.ResponseWriter, r *http.Request) {
 	slug := api.Vars(r, "slug")
-	fmt.Println(slug)
+	//fmt.Println(slug)
 	page := PageData{
 		Title:        "Home page",
 		Content:      "Home page content",
 		PageFile:     "home.html",
 		BasePageFile: "base.html",
+		Slug:         slug,
 	}
 	RenderMultiPageTemplate(w, r, page)
 }
