@@ -51,15 +51,6 @@ func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData
 	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
 	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
 	pd.StaticUrl = MultiStaticUrl(r)
-	//fmt.Println(PagePath(paths.DirPath, pd.BasePageFile))
-	//fmt.Println(pagePath)
-	/*
-		authUser, err := uauth.GetAuthenticatedUser(r)
-		if err == nil {
-			pd.UAuthLoggedIn = true
-			pd.LoggedInUser = authUser.FullName
-		}*/
-	//fmt.Println(pagePath)
 	tmpl, err := template.ParseFiles(basePagePath, pagePath)
 	if err != nil {
 		log.Println("Template error")
