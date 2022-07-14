@@ -46,7 +46,6 @@ func MultiPagePath(dirPath string, spage string) string {
 }
 
 func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
-	//pageData := pd
 	paths := Paths{DirPath: MultiDir(r), StaticUrl: MultiStaticUrl(r)}
 	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
 	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
@@ -54,6 +53,7 @@ func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData
 	tmpl, err := template.ParseFiles(basePagePath, pagePath)
 	if err != nil {
 		log.Println("Template error")
+		log.Println(err)
 	}
 
 	err = tmpl.Execute(w, pd)
