@@ -12,6 +12,8 @@ import (
 	"net/http"
 	"strings"
 	"text/template"
+
+	"github.com/devasiajoseph/wemebox/file"
 )
 
 func GetDomain(r *http.Request) string {
@@ -45,11 +47,24 @@ func MultiPagePath(dirPath string, spage string) string {
 	return FixPathSlash(dirPath + "/" + spage)
 }
 
+func PageNotFound(w http.ResponseWriter, r *http.Request) {
+	w.Write([]byte("Page not found"))
+}
+
 func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
+
 	paths := Paths{DirPath: MultiDir(r), StaticUrl: MultiStaticUrl(r)}
 	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
 	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
 	pd.StaticUrl = MultiStaticUrl(r)
+	if !file.FileExist(basePagePath) {
+		PageNotFound(w, r)
+		return
+	}
+	if !file.FileExist(pagePath) {
+		PageNotFound(w, r)
+		return
+	}
 	tmpl, err := template.ParseFiles(basePagePath, pagePath)
 	if err != nil {
 		log.Println("Template error")
