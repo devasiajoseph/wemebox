@@ -64,9 +64,9 @@ create table page_bkp (
 create table page (
     page_id  serial primary key,
     page_slug varchar(1024),
-    domain_id integer,
     page_file varchar(255),
     base_page_file varchar(255),
+    domain_id integer,
     CONSTRAINT page_domain_id_fkey FOREIGN KEY (domain_id)
     REFERENCES domain (domain_id) MATCH SIMPLE 
     ON DELETE CASCADE
