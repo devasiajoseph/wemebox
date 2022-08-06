@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-139865716-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-139865716-1');
+    </script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Wemebox | {{block "title" .}}{{end}}</title>
+    <link rel="icon" type="image/x-icon" href="{{.StaticUrl}}/favicons/favicon.ico">
+    <link rel="stylesheet" href="{{.StaticUrl}}/css/bulma.min.css">
+    <link rel="stylesheet" href="{{.StaticUrl}}/css/custom.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    {{block "css" .}}{{end}}
+    <!--<script defer src="{{.StaticUrl}}/js/all.js"></script>-->
+</head>
+
+<body>
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <span class="title">[W]</span>
+            </a>
+
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+                data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+      
+    </nav>
+
+    {{block "hero".}}{{end}}
+
+    {{block "content" .}}{{end}}
+    <footer class="footer">
+        <div class="content has-text-centered">
+            <p>
+                <strong>[W] Wemebox</strong> powered by <a href="https://www.centipair.com">Centipair Technologies
+                    Private Limited</a>
+            </p>
+        </div>
+    </footer>
+    <script src="{{.StaticUrl}}/js/jquery.js"></script>
+    <script>
+        $(document).ready(function () {
+
+            // Check for click events on the navbar burger icon
+            $(".navbar-burger").click(function () {
+
+                // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                $(".navbar-burger").toggleClass("is-active");
+                $(".navbar-menu").toggleClass("is-active");
+
+            });
+        });
+    </script>
+    {{block "javascript".}}{{end}}
+</body>
+
+</html>

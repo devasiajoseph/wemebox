@@ -1,6 +1,7 @@
 package website
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
@@ -43,26 +44,30 @@ func RenderPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
 }
 
 func HomePage(w http.ResponseWriter, r *http.Request) {
-	page := PageData{
-		Title:        "Home page",
-		Content:      "Home page content",
-		PageFile:     "home.html",
-		BasePageFile: "base.html",
+	var pd PageData
+	pd.Slug = "home"
+	err := pd.DomainPage(r)
+	if err != nil {
+		log.Println(err)
+		fmt.Printf("%+v\n", pd)
+		fmt.Fprintf(w, "Error loading page")
+		return
 	}
-	RenderMultiPageTemplate(w, r, page)
+	RenderMultiPageTemplate(w, r, pd)
 }
 
 func SlugPage(w http.ResponseWriter, r *http.Request) {
 	slug := api.Vars(r, "slug")
 	//fmt.Println(slug)
-	page := PageData{
-		Title:        "Home page",
-		Content:      "Home page content",
-		PageFile:     "home.html",
-		BasePageFile: "base.html",
-		Slug:         slug,
+	pd := PageData{Slug: slug}
+	err := pd.DomainPage(r)
+	if err != nil {
+		log.Println(err)
+		fmt.Printf("%+v\n", pd)
+		fmt.Fprintf(w, "Error loading page")
+		return
 	}
-	RenderMultiPageTemplate(w, r, page)
+	RenderMultiPageTemplate(w, r, pd)
 }
 
 func StaticPage(w http.ResponseWriter, r *http.Request) {

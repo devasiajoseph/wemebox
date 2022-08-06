@@ -18,21 +18,17 @@ import (
 
 func GetDomain(r *http.Request) string {
 	hostName := r.Host
-	domain := strings.Replace(hostName, "www.", "", -1)
-	domain = strings.Replace(domain, ":8080", "", -1)
+	domain := strings.Split(hostName, ":")[0]
+	domain = strings.Replace(domain, "www.", "", -1)
 	return domain
-
 }
 
 func DomainDir(r *http.Request) string {
-	hostName := r.Host
-	domain := strings.Replace(hostName, "www.", "", -1)
-	domain = strings.Replace(domain, ":8080", "", -1)
-	return domain
+	return GetDomain(r)
 }
 
 func MultiDir(r *http.Request) string {
-	return BinPath + "/html/" + DomainDir(r)
+	return BinPath + "/websites/html/" + DomainDir(r)
 }
 
 func MultiStaticUrl(r *http.Request) string {

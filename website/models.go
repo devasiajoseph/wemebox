@@ -2,6 +2,7 @@ package website
 
 import (
 	"log"
+	"net/http"
 	"strings"
 	"time"
 
@@ -42,11 +43,14 @@ type Domain struct {
 }
 
 type PageData struct {
-	Title         string
-	Content       string
-	PageFile      string
-	BasePageFile  string
-	PageData      interface{}
+	Title        string
+	Content      string
+	PageFile     string `db:"page_file" `
+	BasePageFile string `db:"base_page_file" `
+	DomainID     int    `db:"domain_id"`
+	DomainDir    string `db:"domain_dir"`
+	Domain       string
+	//PageData      interface{}
 	Csrf          string
 	StaticUrl     string
 	UAuthLoggedIn bool
@@ -82,4 +86,16 @@ func GetDomainPage(slug string, domain string) (DomainPage, error) {
 		log.Println(err)
 	}
 	return page, err
+}
+
+func (pd *PageData) DomainPage(r *http.Request) error {
+	db := postgres.Db
+	pd.Domain = GetDomain(r)
+	err := db.Get(pd, sqlDomainPage, pd.Domain, pd.Slug)
+	if err != nil {
+		log.Println("Error getting page")
+		log.Println(err)
+	}
+
+	return err
 }

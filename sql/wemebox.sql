@@ -46,26 +46,13 @@ create table tag (
        tag_name varchar(256) not null unique
 );
 
-create table page_bkp (
-    page_id  serial primary key,
-    page_type varchar(20),
-    page_title varchar(1024),
-    page_markdown text,
-    page_html text,
-    page_slug varchar(1024),
-    last_edited  TIMESTAMP,
-    domain_id integer,
-    CONSTRAINT page_domain_id_fkey FOREIGN KEY (domain_id)
-    REFERENCES domain (domain_id) MATCH SIMPLE 
-    ON DELETE CASCADE
-);
 
 
 create table page (
     page_id  serial primary key,
     page_slug varchar(1024),
     page_file varchar(255),
-    base_page_file varchar(255),
+    base_page_file varchar(255) not null default 'base.html',
     domain_id integer,
     CONSTRAINT page_domain_id_fkey FOREIGN KEY (domain_id)
     REFERENCES domain (domain_id) MATCH SIMPLE 

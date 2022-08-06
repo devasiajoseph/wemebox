@@ -51,9 +51,9 @@ func StartMultiHttps(r *mux.Router) {
 	log.Println("Starting Secure webserver at port 80")
 	AddMultiRoutes(r)
 	certManager := autocert.Manager{
-		Prompt:     autocert.AcceptTOS,
-		Cache:      autocert.DirCache(certsPath),
-		HostPolicy: autocert.HostWhitelist("wemebox.com", "www.wemebox.com"),
+		Prompt: autocert.AcceptTOS,
+		Cache:  autocert.DirCache(certsPath),
+		//HostPolicy: autocert.HostWhitelist("wemebox.com", "www.wemebox.com"),
 	}
 
 	protectionMiddleware := func(handler http.Handler) http.Handler {

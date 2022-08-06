@@ -1,0 +1,53 @@
+{{define "meta"}}
+<meta name="description" content="Add meta description here">
+<meta name="keyword" content="meta, key, words">
+{{end}}
+{{define "title"}} Troubleshooting{{end}}
+
+{{define "hero"}}
+<section class="hero is-documentation">
+  <div class="hero-body">
+    <div class="columns">
+      <div class="column is-12">
+        <div class="container content">
+          <h1 class="is-size-1">Troubleshooting</h1>
+          <h3 class="subtitle">Common issues and their solutions</h3>
+          <a href="https://github.com/devasiajoseph/wemebox" target="_blank" class="button is-dark is-large">
+            <span class="icon">
+              <i class="fab fa-github"></i>
+            </span>
+            <span>Github</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{{end}}  
+{{define "content"}}
+<section class="section">
+
+  <div class="container">
+    <div class="content is-medium trbs" id="getting-started">
+      <h4>Have trouble downloading?</h4>
+      <ul>
+	<li>
+	  If your download is stuck at 100% and not finishing, your antivirus might be scanning for malware. Please wait until it is finished.
+	</li>
+	<li>
+	  Google Chrome has automatic malware check for every file. So please wait until it completes the check.
+	</li>
+      </ul>
+      <h4>Unable to open the binary on MacOS?</h4>
+      <p>Please refer the video below</p>
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/JMyyNg0nxs8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+      <h5>
+	Still having issues?
+      </h5>
+      <p>Please report your issue here: <a href="https://github.com/devasiajoseph/wemebox/issues">Report an issue</a></p>
+    </div>
+  </div>
+</section>
+{{end}}
+  
