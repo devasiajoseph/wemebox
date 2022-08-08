@@ -7,7 +7,6 @@ import (
 	"time"
 
 	"github.com/devasiajoseph/wemebox/db/postgres"
-	"github.com/devasiajoseph/wemebox/uauth"
 )
 
 type DomainPage struct {
@@ -33,7 +32,7 @@ type Blog struct {
 	BlogSlug      string    `db:"page_slug" json:"page_slug"`
 	LastEdited    time.Time `db:"last_edited" json:"last_edited"`
 	UserAccountID int       `db:"user_account_id" json:"UserAccountID"`
-	Author        uauth.UserAccount
+	//Author        uauth.UserAccount
 }
 
 type Domain struct {
@@ -56,6 +55,13 @@ type PageData struct {
 	UAuthLoggedIn bool
 	LoggedInUser  string
 	Slug          string
+}
+
+type MetaData struct {
+	Id      int    `storm:"id,increment" json:"id" `
+	PageId  int    `storm:"index" json:"PageId"`
+	Name    string `storm:"index" json:"Name"`
+	Content string `json:"Content"`
 }
 
 func (d *Domain) Clean() {

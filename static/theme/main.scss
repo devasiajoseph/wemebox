@@ -1,0 +1,65 @@
+
+$primary:#41b3a3;
+$danger: #ff4136;
+$secondary:#919295;
+$dark:#2C2534;
+$theme-colors: (
+  "primary": $primary,
+  "danger":$danger,
+  "secondary":$secondary
+);
+
+.dashboard{
+    padding-top: 50px;
+}
+
+$link-color:map-get($theme-colors, "primary");
+$link-decoration:none;
+$jumbotron-bg:#fff;
+
+$navbar-dark-color:         #fff;
+$navbar-dark-hover-color:   #fff;
+
+
+
+$font-family-sans-serif: "Muli", sans-serif;
+
+$dropdown-link-active-bg:map-get($theme-colors, "primary");
+.text-dark {
+    color: #212529!important;
+}
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
+
+
+
+.notify {
+    position: fixed;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 9999;
+    text-align:center;
+    font-weight:bold;
+    padding:3px 0px 3px 0px;
+}
+
+.notify-loading{
+    width: 150px;
+    background-color: #f9edbe;
+    border-color: #f0c36d;
+}
+
+.notify-error{
+    width: 300px;
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+}
+
+.invalid-field {
+    width: 100%;
+    margin-top: .25rem;
+    color: #dc3545;
+}
+
+

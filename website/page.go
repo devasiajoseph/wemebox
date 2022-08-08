@@ -22,15 +22,6 @@ func RenderPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
 	paths := Paths{DirPath: BinPath, StaticUrl: StaticUrl}
 	pagePath := PagePath(paths.DirPath, pd.PageFile)
 	pd.StaticUrl = "/static"
-	//fmt.Println(PagePath(paths.DirPath, pd.BasePageFile))
-	//fmt.Println(pagePath)
-	/*
-		authUser, err := uauth.GetAuthenticatedUser(r)
-		if err == nil {
-			pd.UAuthLoggedIn = true
-			pd.LoggedInUser = authUser.FullName
-		}*/
-
 	tmpl, err := template.ParseFiles(PagePath(paths.DirPath, pd.BasePageFile), pagePath)
 	if err != nil {
 		log.Println("Template error")

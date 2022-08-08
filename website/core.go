@@ -44,4 +44,7 @@ func PagePath(dirPath string, spage string) string {
 }
 
 var BinPath = BinaryPath()
-var StaticDir = AbsolutePath("websites/static")
+var StaticDir = AbsolutePath("sites/static")
+var DashboardStaticDir = AbsolutePath("static")
+
+var CljsDir = AbsolutePath("cljs/target/public/cljs-out")

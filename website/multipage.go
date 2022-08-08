@@ -28,7 +28,7 @@ func DomainDir(r *http.Request) string {
 }
 
 func MultiDir(r *http.Request) string {
-	return BinPath + "/websites/html/" + DomainDir(r)
+	return BinPath + "/sites/html/" + DomainDir(r)
 }
 
 func MultiStaticUrl(r *http.Request) string {

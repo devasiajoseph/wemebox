@@ -1,0 +1,28 @@
+.notify {
+    position: fixed;
+    left: 50%;
+    margin-left: -150px;
+    z-index: 9999;
+    text-align:center;
+    font-weight:bold;
+    padding:3px 0px 3px 0px;
+}
+
+.notify-loading{
+    width: 150px;
+    background-color: #f9edbe;
+    border-color: #f0c36d;
+}
+
+.notify-error{
+    width: 300px;
+    background-color: #E74C3C;
+    border-color: #E74C3C;
+    color:#fff;
+}
+
+.invalid-field {
+    width: 100%;
+    margin-top: .25rem;
+    color: #dc3545;
+}

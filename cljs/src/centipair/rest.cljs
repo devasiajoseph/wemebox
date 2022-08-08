@@ -39,3 +39,8 @@
 (defn object-options
   [obj & [params]]
   (str "/api/options/" obj))
+
+
+(defn init! 
+  [ru]
+  (reset! url ru))
