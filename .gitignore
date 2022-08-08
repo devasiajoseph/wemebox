@@ -35,9 +35,7 @@ id_rsa
 id_rsa.pub
 wemebox
 config.yml
-wfront/resources/public/fcljs-out/
-reset
-sites
+resets
 *.zip
 user-ui/
 admin-ui/
@@ -45,3 +43,5 @@ node-modules/
 test-config.yml
 *.code-workspace
 *.db
+.cpcache
+.lsp

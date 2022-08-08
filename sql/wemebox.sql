@@ -13,8 +13,7 @@ CREATE TABLE user_account(
        full_name VARCHAR (250) NOT NULL default '',
        active BOOLEAN NOT NULL default false,
        created_on TIMESTAMP NOT NULL,
-       last_login TIMESTAMP,
-       
+       last_login TIMESTAMP       
 );
 
 CREATE TABLE user_session(
@@ -29,7 +28,7 @@ CREATE TABLE user_session(
 
 CREATE TABLE domain_user_role (
        role_id serial PRIMARY KEY,
-       role VARCHAR (20) not null default 'user'
+       role VARCHAR (20) not null default 'user',
        user_account_id integer,
        domain_id integer,
        CONSTRAINT user_account_id_fkey FOREIGN KEY (user_account_id)
@@ -69,7 +68,7 @@ create table blog (
     blog_slug varchar(1024),
     created TIMESTAMP,
     last_edited  TIMESTAMP,
-    domain_id integer,]
+    domain_id integer,
     CONSTRAINT blog_domain_id_fkey FOREIGN KEY (domain_id)
     REFERENCES domain (domain_id) MATCH SIMPLE 
     ON DELETE CASCADE

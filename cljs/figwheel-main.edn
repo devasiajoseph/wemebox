@@ -1,4 +1,4 @@
 {:watch-dirs ["src"]
- :open-url "http://localhost:8081/dashboard"
+ :open-url "http://localhost:8081/wb/dashboard"
   }
 

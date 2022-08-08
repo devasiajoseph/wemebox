@@ -8,6 +8,7 @@
 package website
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -53,6 +54,7 @@ func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData
 	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
 	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
 	pd.StaticUrl = MultiStaticUrl(r)
+	fmt.Println(pd.StaticUrl)
 	if !file.FileExist(basePagePath) {
 		PageNotFound(w, r)
 		return
