@@ -67,7 +67,12 @@ create table blog (
     blog_markdown text,
     blog_html text,
     blog_slug varchar(1024),
-    last_edited  TIMESTAMP
+    created TIMESTAMP,
+    last_edited  TIMESTAMP,
+    domain_id integer,]
+    CONSTRAINT blog_domain_id_fkey FOREIGN KEY (domain_id)
+    REFERENCES domain (domain_id) MATCH SIMPLE 
+    ON DELETE CASCADE
 );
 
 
