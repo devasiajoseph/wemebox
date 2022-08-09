@@ -1,0 +1,230 @@
+
+ {{define "content"}}
+ <section id="heroVideo" class="section">
+    <div class="hero-video">
+      <div class="hero-video__frame lazyload">
+        <div class="preserve">
+          <video data-lazyload id="player" playsinline loop autoplay muted data-poster="{{.StaticUrl}}/images/Home/Banner.jpg" data-hero-parallax >
+          </video>
+        </div>
+      </div>
+      <div class="hero-video__body">
+        <div class="hero-video__teaser">
+          <div class="hero-copy"> <span class="pretextline pretextline--light">Welcome to Palathra Infra Developers</span>
+            <h1 class="hero-headline">Leading Construction Company in Kerala</h1>
+          </div>
+          <div class="hero-video__teaser-copy">
+            <p>When we build, Quality is built-in.</p>
+            <div class="hero-video__shuffle" data-element="teaser-shuffle"> <span class="pretextline pretextline--ext"> <span data-shuffle class="is-enter">Constructing the Success</span> <span data-shuffle >Shaping the Future</span> <span data-shuffle >Bridging the gap in construction</span> <span data-shuffle >Superior Quality and Results</span> </span> </div>
+            <div class="hero-video__scroll"></div>
+          </div>
+        </div>
+        <div class="hero-video__socials">
+          <ul class="socials socials--hero">
+            <li class="socials-facebook"> <a href="" target="_blank" rel="noopener noreferrer">
+              <svg width="8" height="15" viewBox="0 0 8 15" xmlns="http://www.w3.org/2000/svg">
+                <path d="M7.474 8.378l.415-2.693H5.296V3.938c-.036-.407.115-.81.411-1.092a1.355 1.355 0 011.113-.363h1.179V.191A14.428 14.428 0 005.904.01a3.306 3.306 0 00-2.618.987 3.28 3.28 0 00-.913 2.637v2.051H-.001v2.693h2.374v6.509c.968.15 1.953.15 2.921 0V8.378h2.18z" fill="currentColor" fill-rule="nonzero"/>
+              </svg>
+              </a> </li>
+      <li class="socials-instagram"> <a href="" target="_blank" rel="noopener noreferrer">
+              
+<svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 32 32" width="64px" height="64px"><path d="M 11.46875 5 C 7.917969 5 5 7.914063 5 11.46875 L 5 20.53125 C 5 24.082031 7.914063 27 11.46875 27 L 20.53125 27 C 24.082031 27 27 24.085938 27 20.53125 L 27 11.46875 C 27 7.917969 24.085938 5 20.53125 5 Z M 11.46875 7 L 20.53125 7 C 23.003906 7 25 8.996094 25 11.46875 L 25 20.53125 C 25 23.003906 23.003906 25 20.53125 25 L 11.46875 25 C 8.996094 25 7 23.003906 7 20.53125 L 7 11.46875 C 7 8.996094 8.996094 7 11.46875 7 Z M 21.90625 9.1875 C 21.402344 9.1875 21 9.589844 21 10.09375 C 21 10.597656 21.402344 11 21.90625 11 C 22.410156 11 22.8125 10.597656 22.8125 10.09375 C 22.8125 9.589844 22.410156 9.1875 21.90625 9.1875 Z M 16 10 C 12.699219 10 10 12.699219 10 16 C 10 19.300781 12.699219 22 16 22 C 19.300781 22 22 19.300781 22 16 C 22 12.699219 19.300781 10 16 10 Z M 16 12 C 18.222656 12 20 13.777344 20 16 C 20 18.222656 18.222656 20 16 20 C 13.777344 20 12 18.222656 12 16 C 12 13.777344 13.777344 12 16 12 Z" fill="currentColor" fill-rule="nonzero"/></svg>
+              </a> </li>
+      <li class="socials-twitter"> <a href="" target="_blank" rel="noopener noreferrer">
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" fill="currentColor" fill-rule="nonzero"/></svg>
+              </a> </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teaserIntro" class="section">
+    <div class="teaser-intro">
+      <div class="teaser-intro__body">
+        <div class="teaser-intro__image" data-aos="fade-up" data-aos-delay="200" data-aos-easing="ease-in-out" >
+          <figure> <img data-lazyload data-src="{{.StaticUrl}}/images/Home/About.jpg" alt=""> </figure>
+        </div>
+        <div class="teaser-intro__copy">
+          <div class="teaserbox">
+            <div class="teaserbox__copy"> <span class="pretextline ">ABOUT</span> <span class="teaserbox__preheadline">Who we are</span>
+              <h3 class="hl1">Construction company in Kerala</h3>
+              <p>Established in 1975, Palathra Infra Developers Pvt Ltd is a leading construction and infrastructure based organization that has matched and exceeded the expectations of numerous well pleased clients with top quality services. </p>
+              <a class="button" href="About.html" >Read More</a> </div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="teaserReferences" class="section">
+    <div class="teaser-references">
+      <div class="teaser-references__body" data-element="gallery-references">
+        <div class="teaser-references__copy">
+          <div class="teaserbox">
+            <div class="teaserbox__copy"> <span class="pretextline ">Our Services</span> <span class="teaserbox__preheadline">AREA OF EXPERTISE</span>
+              <h3 class="hl1">Dreams that we turned into Reality</h3>
+              <p>We offer a wide variety of services catering to different industrial and commercial needs. As part of our work with the PWD and PMGSY, we have completed more than 500 kilometers of road construction, as well as more than 1,000 nos of mobile towers for various operators across Kerala. </p>
+              <a class="button" href="Services.html" >Read More</a> </div>
+          </div>
+        </div>
+        <div class="teaser-references__gallery">
+          <div class="swiper-container gallery-references">
+            <div class="swiper-wrapper gallery-references__wrapper">
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload data-src="{{.StaticUrl}}/images/Icons/Bridge.png" alt="Bridges"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload data-src="{{.StaticUrl}}/images/Icons/Roads.png" alt="Roads"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload data-src="{{.StaticUrl}}/images/Icons/Buildings.png" alt="Buildings"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload data-src="{{.StaticUrl}}/images/Icons/Drainage.png" alt="Drainage"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload data-src="{{.StaticUrl}}/images/Icons/Irrigation.png" alt="Irrigation"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload data-src="{{.StaticUrl}}/images/Icons/Factory Yards.png" alt="Factory Yards"> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-buttons">
+          <div class="swiper-button-prev button-prev gallery-refs-prev"><span></span></div>
+          <div class="swiper-button-next button-next gallery-refs-next"><span></span></div>
+        </div>
+      </div>
+      <figure class="background-image"> <img data-lazyload data-src="{{.StaticUrl}}/images/Home/services.jpg" alt="Alt-Text"> </figure>
+    </div>
+  </section>
+  <section id="teaserSimple" class="section">
+    <div class="teaser-simple">
+      <div class="teaser-simple__body">
+        <div class="teaser-simple__copy">
+          <div class="teaserbox">
+            <div class="teaserbox__copy"> <span class="pretextline ">Our Business</span> <span class="teaserbox__preheadline">Quality Constructions delivered on Time</span>
+              <h3 class="hl1">Dreams that turned into reality</h3>
+              <p>Our unfaltering quality of service and customer-loyalty has rendered us an award-winning organization with several accolades to our name. </p>
+              <a class="button" href="Our_Business.html" >Read More</a> </div>
+          </div>
+        </div>
+        <div class="teaser-simple__image">
+          <figure class="mediabox mediabox--teaser">
+            <div class="mediabox__frame"> <img src="{{.StaticUrl}}/images/Home/Business.jpg" alt=""> </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+<section id="teaserReferences" class="section">
+    <div class="teaser-references">
+      <div class="teaser-references__body" data-element="gallery-references">
+        <div class="teaser-references__copy">
+          <div class="teaserbox">
+            <div class="teaserbox__copy"> <span class="pretextline ">Our Clients</span>
+      <h3 class="hl1">Palathra's Quest for Excellence has Made it the Trendsetter of Industry</h3>
+              <p>We are an award-winning organization with a very prominent clientele.</p>
+            </div>
+          </div>
+        </div>
+        <div class="teaser-references__gallery">
+          <div class="swiper-container gallery-references swiper-container-initialized swiper-container-horizontal swiper-container-pointer-events">
+            <div class="swiper-wrapper gallery-references__wrapper" style="transform: translate3d(-779px, 0px, 0px); transition-duration: 0ms;">
+              <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/PWD.png" alt="PWD" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/PWD.png"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/PMGSY.png" alt="PMGSY" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/PMGSY.png"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide swiper-slide-prev" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/KMRL.png" alt="KMRL" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/KMRL.png"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide swiper-slide-active" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/IOC.png" alt="IOC" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/IOC.png"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide swiper-slide-next" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Kiifb.png" alt="KIIFB" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Kiifb.png"> </div>
+                </div>
+              </div>
+              <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/MRF.png" alt="MRF" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/MRF.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Caritas.png" alt="Caritas" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Caritas.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Indus.png" alt="Indus" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Indus.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/kims.png" alt="Kims" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/kims.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Seemati.png" alt="Seemati" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Seemati.png"> </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="gallery-buttons">
+          <div class="swiper-button-prev button-prev gallery-refs-prev"><span></span></div>
+          <div class="swiper-button-next button-next gallery-refs-next swiper-button-disabled"><span></span></div>
+        </div>
+      </div>
+      <figure class="background-image"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients.jpg" alt="Alt-Text" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients.jpg"> </figure>
+    </div>
+  </section>
+
+<section id="teaserSimple" class="section">
+    <div class="teaser-simple">
+      <div class="teaser-simple__body">
+        <div class="teaser-simple__copy">
+          <div class="teaserbox">
+            <div class="teaserbox__copy"> <span class="pretextline ">PROJECTS</span> <span class="teaserbox__preheadline">At a glance</span>
+              <h3 class="hl1">Have a glance at our projects here</h3>
+              <p>We developed our own work flow by integrating best industry-practises into our work process. Thanks to a decade of experience. </p>
+              <a class="button" href="Projects.html" >View More</a> </div>
+          </div>
+        </div>
+        <div class="teaser-simple__image">
+          <figure class="mediabox mediabox--teaser">
+            <div class="mediabox__frame"> <img src="{{.StaticUrl}}/images/Home/Projects.jpg" alt=""> </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="scroller-line"> <span class="scroller-line__inner"> <span></span> </span></div>
+{{end}}

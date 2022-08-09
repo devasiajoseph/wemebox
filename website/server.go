@@ -15,8 +15,20 @@ import (
 
 var certsPath = core.AbsolutePath("certs")
 
+func HttpsRedirect(w http.ResponseWriter, req *http.Request) {
+	// remove/add not default ports from req.Host
+	target := "https://" + req.Host + req.URL.Path
+	if len(req.URL.RawQuery) > 0 {
+		target += "?" + req.URL.RawQuery
+	}
+	log.Printf("redirect to: %s", target)
+	http.Redirect(w, req, target,
+		// see comments below and consider the codes 308, 302, or 301
+		http.StatusTemporaryRedirect)
+}
+
 func StartHttp(r *mux.Router) {
-	log.Println("Starting  webserver at port 8080")
+	log.Println("Starting  webserver at port " + core.Config.Port)
 
 	//r.PathPrefix("/static/").Handler(http.StripPrefix("/static/", http.FileServer(http.Dir(StaticDir))))
 	protectionMiddleware := func(handler http.Handler) http.Handler {
@@ -38,7 +50,7 @@ func StartHttp(r *mux.Router) {
 			handler.ServeHTTP(w, r)
 		})
 	}
-	err := http.ListenAndServe(":8080",
+	err := http.ListenAndServe(":"+core.Config.Port,
 		protectionMiddleware(r),
 	)
 
@@ -48,7 +60,8 @@ func StartHttp(r *mux.Router) {
 }
 
 func StartMultiHttps(r *mux.Router) {
-	log.Println("Starting Secure webserver at port 80")
+	log.Println("Starting Secure webserver at port 443")
+	go http.ListenAndServe(":80", http.HandlerFunc(HttpsRedirect))
 	AddMultiRoutes(r)
 	certManager := autocert.Manager{
 		Prompt: autocert.AcceptTOS,

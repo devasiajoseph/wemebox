@@ -10,7 +10,7 @@ import (
 
 func AddMultiRoutes(r *mux.Router) {
 	r.HandleFunc("/", HomePage)
-	r.HandleFunc("/p/{slug}", SlugPage)
+	r.HandleFunc("/page/{slug}", SlugPage)
 
 	var fs http.Handler
 	var dfs http.Handler

@@ -8,7 +8,6 @@
 package website
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 	"strings"
@@ -45,16 +44,14 @@ func MultiPagePath(dirPath string, spage string) string {
 }
 
 func PageNotFound(w http.ResponseWriter, r *http.Request) {
-	w.Write([]byte("Page not found"))
+	w.Write([]byte("404 - Page not found"))
 }
 
 func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData) {
-
 	paths := Paths{DirPath: MultiDir(r), StaticUrl: MultiStaticUrl(r)}
 	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
 	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
 	pd.StaticUrl = MultiStaticUrl(r)
-	fmt.Println(pd.StaticUrl)
 	if !file.FileExist(basePagePath) {
 		PageNotFound(w, r)
 		return

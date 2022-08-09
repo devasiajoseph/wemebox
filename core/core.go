@@ -11,7 +11,7 @@ import (
 )
 
 type ServerConfig struct {
-	Port        int
+	Port        string
 	URL         string
 	Compress    bool
 	Domain      string

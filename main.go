@@ -14,6 +14,10 @@ func main() {
 	r := mux.NewRouter()
 	dashboard.Start(r)
 	website.AddMultiRoutes(r)
-	website.StartHttp(r)
+	if core.Config.Ssl {
+		website.StartMultiHttps(r)
+	} else {
+		website.StartHttp(r)
+	}
 
 }
