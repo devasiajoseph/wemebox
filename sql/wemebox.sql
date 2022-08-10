@@ -118,3 +118,18 @@ create table blog_tag(
        REFERENCES blog (blog_id) MATCH SIMPLE 
        ON DELETE CASCADE
 );
+
+
+create table subs(
+       subs_id serial primary key,
+       domain_id integer,
+       credits integer
+);
+
+create table trx(
+       trx_id serial primary key,
+       domain_id integer,
+       credit integer,
+       debit integer
+       trx_time TIMESTAMP
+);

@@ -11,3 +11,7 @@ func GetDomainName(r *http.Request) string {
 	host = strings.Replace(host, "www.", "", -1)
 	return host
 }
+
+func SaveWebsite(w http.ResponseWriter, r *http.Request) {
+
+}

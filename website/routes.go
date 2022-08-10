@@ -34,3 +34,7 @@ func AddMultiRoutes(r *mux.Router) {
 	cljs := http.StripPrefix("/cljs-out/", cljsfs)
 	r.PathPrefix("/cljs-out/").Handler(cljs)
 }
+
+func Start(r *mux.Router) {
+	AddMultiRoutes(r)
+}
