@@ -7,5 +7,5 @@ type Subscription struct {
 }
 
 func AddCredits(dID int, credits int) error {
-
+	return nil
 }
