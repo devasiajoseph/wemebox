@@ -28,3 +28,13 @@
            :placeholder (if (nil? (:placeholder @field))
                           ""
                           (:placeholder @field))}])
+
+(defn checkbox
+  [field]
+  ^{:key (:id @field)}
+    [:input {:type "checkbox"
+             :value (:value @field)
+             :on-change #(cin/update-check field (-> % .-target .-checked))
+             :checked (:checked @field)
+             :class-name "form-check-input"
+             :id (:id @field)}])

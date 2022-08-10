@@ -6,7 +6,7 @@
 
 (defn home-page []
   [:div {:class "mt-5"}
-   [:h2 "Welcome to Fintech App "]
+   [:h2 "Welcome to your website dashboard "]
    [:p "Use the side menu to navigate"]])
 
 

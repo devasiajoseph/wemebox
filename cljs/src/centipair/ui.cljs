@@ -53,7 +53,7 @@
 
 (defn page-title
   [value]
-  (dom/set-title (str "[CP]Fintech - " value)))
+  (dom/set-title (str "Wemebox - " value)))
 
 (defn show-loader
   []

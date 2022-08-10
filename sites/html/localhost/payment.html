@@ -1,0 +1,50 @@
+{{define "meta"}}
+  <meta name="description" content="Add meta description here">
+  <meta name="keyword" content="meta, key, words">
+{{end}}
+{{define "title"}} Payments{{end}}
+{{define "content"}}
+<section class="section">
+  <div class="container">
+    <form action="/charge" method="post" id="payment-form">
+  <div class="form-row">
+    <label for="card-element">
+      Credit or debit card
+    </label>
+    <div id="card-element">
+      <!-- A Stripe Element will be inserted here. -->
+    </div>
+
+    <!-- Used to display Element errors. -->
+    <div id="card-errors" role="alert"></div>
+  </div>
+
+  <button>Submit Payment</button>
+</form>
+  </div>
+</section>
+{{end}}
+{{define "javascript"}}
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  var stripe = Stripe('pk_test_1jR8SGngchOkOo98M0HyY8bt00pUVlLAPD');
+var elements = stripe.elements();
+  // Custom styling can be passed to options when creating an Element.
+var style = {
+  base: {
+    // Add your base input styles here. For example:
+    fontSize: '16px',
+    color: "#32325d",
+  }
+};
+
+// Create an instance of the card Element.
+var card = elements.create('card', {style: style});
+
+// Add an instance of the card Element into the `card-element` <div>.
+card.mount('#card-element');
+</script>
+  
+{{end}}
+
+  

@@ -9,6 +9,10 @@ import (
 	"github.com/devasiajoseph/wemebox/db/postgres"
 )
 
+var roleAdmin = "admin"
+var roleOwner = "owner"
+var roleEditor = "editor"
+
 type DomainPage struct {
 	PageFile     string `db:"page_file" json:"page_file"`
 	BasePageFile string `db:"base_page_file" json:"base_page_file"`
@@ -39,6 +43,14 @@ type Domain struct {
 	DomainID   int    `db:"domain_id" json:"domain_id"`
 	DomainName string `db:"domain_name" json:"domain_name"`
 	DomainDir  string `db:"domain_dir" json:"domain_dir"`
+	Active     bool   `db:"active" json:"active"`
+}
+
+type DomainUserRole struct {
+	RoleID        int    `db:"role_id" json:"role_id"`
+	DomainID      int    `db:"domain_id" json:"domain_id"`
+	UserAccountID int    `db:"user_account_id" json:"UserAccountID"`
+	Role          string `db:"role" json:"role"`
 }
 
 type PageData struct {
@@ -101,6 +113,38 @@ func (pd *PageData) DomainPage(r *http.Request) error {
 	if err != nil {
 		log.Println("Error getting page")
 		log.Println(err)
+	}
+
+	return err
+}
+
+var sqlInsertDomain = "insert into domain (domain_name,domain_dir) values (:domain_name,:domain_dir) returning domain_id;"
+var sqlAddDomainUser = "insert into domain_user_role (role,user_account_id,domain_id) values (:role,:user_account_id,:domain_id);"
+
+func (d *Domain) Create(ownerID int) error {
+	db := postgres.Db
+	rows, err := db.NamedQuery(sqlInsertDomain, d)
+	if err != nil {
+		log.Println("Error creating domain")
+		log.Println(err)
+		return err
+	}
+	if rows.Next() {
+		rows.Scan(d.DomainID)
+	}
+	defer rows.Close()
+
+	dr := DomainUserRole{
+		DomainID:      d.DomainID,
+		Role:          roleOwner,
+		UserAccountID: ownerID,
+	}
+	_, err = db.NamedExec(sqlAddDomainUser, dr)
+
+	if err != nil {
+		log.Println("Error adding user role")
+		log.Println(err)
+		return err
 	}
 
 	return err

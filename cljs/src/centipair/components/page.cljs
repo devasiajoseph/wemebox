@@ -8,8 +8,8 @@
 
 (defn card-container
   "Card UI container for dashboard"
-  []
-  [:div {:class "card shadow mb-4"}
+  [max-width]
+  [:div {:class "card shadow mb-4" :style {:max-width (or max-width "100%")}}
    [:div {:class "card-header"} [:h2 (:header @page-data)]]
    [:div {:class "card-body"}
     ((:components @page-data))]])
@@ -24,7 +24,7 @@
     (components)]])
 
 (defn render 
-  [title components root]
+  [title components root &[max-width]]
   (ui/page-title title)
   (swap! page-data assoc :header title :components components)
-  (ui/render card-container root))
+  (ui/render (partial card-container max-width) root))

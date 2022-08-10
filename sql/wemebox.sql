@@ -1,20 +1,50 @@
 CREATE TABLE domain(
        domain_id serial PRIMARY KEY,
-       domain_name varchar(255),
-       domain_dir varchar(255)
+       domain_name varchar(255) not null unique,
+       domain_dir varchar(255) not null unique
 );
 
 
+/*user tables*/
 CREATE TABLE user_account(
        user_account_id serial PRIMARY KEY,
-       phone VARCHAR(20) UNIQUE NOT NULL,
-       email VARCHAR (355) UNIQUE NOT NULL default '',
-       password VARCHAR (1024) NOT NULL,       
-       full_name VARCHAR (250) NOT NULL default '',
+       full_name VARCHAR (250),   
+       email VARCHAR (355) UNIQUE NOT NULL,
+       password VARCHAR (1024) NOT NULL,
+       phone VARCHAR(20),
+       role VARCHAR(10) NOT NULL default 'user',
        active BOOLEAN NOT NULL default false,
        created_on TIMESTAMP NOT NULL,
-       last_login TIMESTAMP       
+       last_login TIMESTAMP
+       );
+
+
+CREATE INDEX index_user_account_email ON user_account(email);
+CREATE INDEX index_user_account_phone ON user_account(phone);
+
+CREATE TABLE user_profile(
+       user_profile_id serial PRIMARY KEY,
+       address_line_1 VARCHAR (255),
+       address_line_2 VARCHAR (255),
+       city VARCHAR (255),
+       state_province VARCHAR (255),
+       country_id VARCHAR (3) NOT NULL default 'US',
+       postal_code VARCHAR(20),
+       user_account_id integer NOT NULL,
+       CONSTRAINT user_profile_user_account_id_fkey FOREIGN KEY (user_account_id)
+       REFERENCES user_account (user_account_id) MATCH SIMPLE 
+       ON DELETE CASCADE
 );
+
+CREATE TABLE user_keys(
+       user_keys_id serial PRIMARY KEY,
+       user_account_id integer NOT NULL,
+       key_name VARCHAR (255),
+       key_value VARCHAR (255),
+       CONSTRAINT user_registration_user_account_id_fkey FOREIGN KEY (user_account_id)
+       REFERENCES user_account (user_account_id) MATCH SIMPLE 
+       ON DELETE CASCADE
+       );
 
 CREATE TABLE user_session(
        user_session_id serial PRIMARY KEY,

@@ -139,3 +139,12 @@ func TimeFile() string {
 	tf := strings.Replace(t.Format(fileTimeFormat), "+", "-", -1)
 	return tf
 }
+
+func MakeDirectory(path string) error {
+	err := os.MkdirAll(path, os.ModePerm)
+	if err != nil {
+		log.Println(err)
+	}
+
+	return err
+}

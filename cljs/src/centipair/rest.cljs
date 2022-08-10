@@ -37,7 +37,7 @@
     (str "/api/" obj)))
 
 (defn object-options
-  [obj & [params]]
+  [obj]
   (str "/api/options/" obj))
 
 
