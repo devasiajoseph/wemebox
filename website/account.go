@@ -20,10 +20,6 @@ type Trx struct {
 	Notes    string `db:"notes" json:"notes"`
 }
 
-func balance(dID int) (int, error) {
-	return 0, nil
-}
-
 func updateBalance(dID int) error {
 	return nil
 }
@@ -35,5 +31,6 @@ func (trx *Trx) Execute() error {
 	if err != nil {
 		log.Println(err)
 	}
+	err = updateBalance(trx.DomainID)
 	return err
 }

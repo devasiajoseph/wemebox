@@ -24,7 +24,7 @@ func TestTrx(t *testing.T) {
 
 	trx = Trx{
 		DomainID: 1,
-		Debit:    30,
+		Debit:    10,
 	}
 
 	err = trx.Execute()
