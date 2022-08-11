@@ -120,16 +120,24 @@ create table blog_tag(
 );
 
 
-create table subs(
+create table account(
        subs_id serial primary key,
-       domain_id integer,
-       credits integer
+       domain_id integer unique,
+       balance integer,
+       CONSTRAINT account_domain_id_fkey FOREIGN KEY (domain_id)
+       REFERENCES domain (domain_id) MATCH SIMPLE 
+       ON DELETE CASCADE
+
 );
 
 create table trx(
        trx_id serial primary key,
        domain_id integer,
-       credit integer,
-       debit integer
-       trx_time TIMESTAMP
+       credit integer not null default 0,
+       debit integer not null default 0,
+       trx_time TIMESTAMP not null default now(),
+       notes text not null default '',
+       CONSTRAINT trx_domain_id_fkey FOREIGN KEY (domain_id)
+       REFERENCES domain (domain_id) MATCH SIMPLE 
+       ON DELETE CASCADE
 );
