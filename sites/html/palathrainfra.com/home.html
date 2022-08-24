@@ -1,10 +1,11 @@
 
  {{define "content"}}
- <section id="heroVideo" class="section">
+  <section id="heroVideo" class="section">
     <div class="hero-video">
       <div class="hero-video__frame lazyload">
         <div class="preserve">
           <video data-lazyload id="player" playsinline loop autoplay muted data-poster="{{.StaticUrl}}/images/Home/Banner.jpg" data-hero-parallax >
+      <source data-src="" type="video/mp4" src="">
           </video>
         </div>
       </div>
@@ -15,7 +16,7 @@
           </div>
           <div class="hero-video__teaser-copy">
             <p>When we build, Quality is built-in.</p>
-            <div class="hero-video__shuffle" data-element="teaser-shuffle"> <span class="pretextline pretextline--ext"> <span data-shuffle class="is-enter">Constructing the Success</span> <span data-shuffle >Shaping the Future</span> <span data-shuffle >Bridging the gap in construction</span> <span data-shuffle >Superior Quality and Results</span> </span> </div>
+            <div class="hero-video__shuffle" data-element="teaser-shuffle"> <span class="pretextline pretextline--ext"> <span data-shuffle class="is-enter">Quality for generations</span> <span data-shuffle >We’re building dreams</span> <span data-shuffle >Build as solid as concrete</span> <span data-shuffle >Superior Quality and Results</span> </span> </div>
             <div class="hero-video__scroll"></div>
           </div>
         </div>
@@ -47,11 +48,31 @@
         <div class="teaser-intro__copy">
           <div class="teaserbox">
             <div class="teaserbox__copy"> <span class="pretextline ">ABOUT</span> <span class="teaserbox__preheadline">Who we are</span>
-              <h3 class="hl1">Construction company in Kerala</h3>
+              <h3 class="hl1">Building your visions. Creating reality</h3>
               <p>Established in 1975, Palathra Infra Developers Pvt Ltd is a leading construction and infrastructure based organization that has matched and exceeded the expectations of numerous well pleased clients with top quality services. </p>
               <a class="button" href="About.html" >Read More</a> </div>
           </div>
           
+        </div>
+      </div>
+    </div>
+  </section>
+
+<section id="teaserSimple" class="section">
+    <div class="teaser-simple">
+      <div class="teaser-simple__body">
+        <div class="teaser-simple__copy">
+          <div class="teaserbox">
+            <div class="teaserbox__copy"> <span class="pretextline ">In Media</span> <span class="teaserbox__preheadline">Paving Interlock tiles</span>
+              <h3 class="hl1">Low Cost Landscaping</h3>
+              <p>Interlocking bricks can be used as an alternative to normal bricks for low cost and budget friendly house construction.</p>
+              <a class="button" href="https://www.youtube.com/watch?v=NIXsKW6O00o" target="_blank">View in Youtube</a> </div>
+          </div>
+        </div>
+        <div class="teaser-simple__image">
+          <figure class="mediabox mediabox--teaser">
+            <iframe width="700" height="400" src="https://www.youtube.com/embed/NIXsKW6O00o" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+          </figure>
         </div>
       </div>
     </div>
@@ -62,7 +83,7 @@
         <div class="teaser-references__copy">
           <div class="teaserbox">
             <div class="teaserbox__copy"> <span class="pretextline ">Our Services</span> <span class="teaserbox__preheadline">AREA OF EXPERTISE</span>
-              <h3 class="hl1">Dreams that we turned into Reality</h3>
+              <h3 class="hl1">Diversified services. Unvarying quality</h3>
               <p>We offer a wide variety of services catering to different industrial and commercial needs. As part of our work with the PWD and PMGSY, we have completed more than 500 kilometers of road construction, as well as more than 1,000 nos of mobile towers for various operators across Kerala. </p>
               <a class="button" href="Services.html" >Read More</a> </div>
           </div>
@@ -117,7 +138,7 @@
         <div class="teaser-simple__copy">
           <div class="teaserbox">
             <div class="teaserbox__copy"> <span class="pretextline ">Our Business</span> <span class="teaserbox__preheadline">Quality Constructions delivered on Time</span>
-              <h3 class="hl1">Dreams that turned into reality</h3>
+              <h3 class="hl1">Quality construction with top notch reputation</h3>
               <p>Our unfaltering quality of service and customer-loyalty has rendered us an award-winning organization with several accolades to our name. </p>
               <a class="button" href="Our_Business.html" >Read More</a> </div>
           </div>
@@ -149,6 +170,11 @@
                   <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/PWD.png" alt="PWD" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/PWD.png"> </div>
                 </div>
               </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/pwd1.png" alt="PWD" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/pwd1.png"> </div>
+                </div>
+              </div>
               <div class="swiper-slide" style="width: 259.667px;">
                 <div class="box">
                   <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/PMGSY.png" alt="PMGSY" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/PMGSY.png"> </div>
@@ -160,6 +186,21 @@
                 </div>
               </div>
               <div class="swiper-slide swiper-slide-active" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Travancore.png" alt="Travancore" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Travancore.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide swiper-slide-active" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/CUSAT.png" alt="CUSAT" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/CUSAT.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide swiper-slide-active" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Mangalam.png" alt="Mangalam" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Mangalam.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide swiper-slide-active" style="width: 259.667px;">
                 <div class="box">
                   <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/IOC.png" alt="IOC" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/IOC.png"> </div>
                 </div>
@@ -194,6 +235,41 @@
                   <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Seemati.png" alt="Seemati" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Seemati.png"> </div>
                 </div>
               </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/KLDC.png" alt="KLDC" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/KLDC.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/KSNK.png" alt="KSNK" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/KSNK.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Reliance.png" alt="Reliance" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Reliance.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/NT Paul.png" alt="NT Paul" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/NT Paul.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Airtel.png" alt="Airtel" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Airtel.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Narayana.png" alt="Narayana" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Narayana.png"> </div>
+                </div>
+              </div>
+      <div class="swiper-slide" style="width: 259.667px;">
+                <div class="box">
+                  <div class="logo"> <img data-lazyload="" data-src="{{.StaticUrl}}/images/Clients/Saintgits.png" alt="Saintgits" data-ll-status="loaded" class="entered loaded" src="{{.StaticUrl}}/images/Clients/Saintgits.png"> </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -212,7 +288,7 @@
         <div class="teaser-simple__copy">
           <div class="teaserbox">
             <div class="teaserbox__copy"> <span class="pretextline ">PROJECTS</span> <span class="teaserbox__preheadline">At a glance</span>
-              <h3 class="hl1">Have a glance at our projects here</h3>
+              <h3 class="hl1">We provide quality construction for every project</h3>
               <p>We developed our own work flow by integrating best industry-practises into our work process. Thanks to a decade of experience. </p>
               <a class="button" href="Projects.html" >View More</a> </div>
           </div>
@@ -227,4 +303,5 @@
   </section>
 
   <div class="scroller-line"> <span class="scroller-line__inner"> <span></span> </span></div>
+
 {{end}}

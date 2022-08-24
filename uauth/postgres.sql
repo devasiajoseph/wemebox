@@ -41,4 +41,3 @@ CREATE TABLE user_session(
        ON DELETE CASCADE
        );
       
-
