@@ -33,7 +33,6 @@ compiled.zip
 bkp/
 id_rsa
 id_rsa.pub
-wemebox
 config.yml
 resets
 *.zip
