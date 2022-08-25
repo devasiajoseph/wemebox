@@ -13,6 +13,7 @@ import (
 	"strings"
 	"text/template"
 
+	"github.com/devasiajoseph/wemebox/core"
 	"github.com/devasiajoseph/wemebox/file"
 )
 
@@ -24,6 +25,10 @@ func GetDomain(r *http.Request) string {
 }
 
 func DomainDir(r *http.Request) string {
+	domain := GetDomain(r)
+	if domain == "localhost" {
+		return core.Config.LocalHost
+	}
 	return GetDomain(r)
 }
 
