@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/devasiajoseph/wemebox/core"
 	"github.com/devasiajoseph/wemebox/db/postgres"
 )
 
@@ -100,8 +101,13 @@ func GetDomainPage(slug string, domain string) (DomainPage, error) {
 }
 
 func (pd *PageData) DomainPage(r *http.Request) error {
+	domain := GetDomain(r)
+	if domain == "localhost" {
+		pd.Domain = core.Config.LocalHost
+	} else {
+		pd.Domain = domain
+	}
 	db := postgres.Db
-	pd.Domain = GetDomain(r)
 	err := db.Get(pd, sqlDomainPage, pd.Domain, pd.Slug)
 	if err != nil {
 		log.Println("Error getting page")

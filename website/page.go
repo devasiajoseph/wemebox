@@ -49,7 +49,6 @@ func HomePage(w http.ResponseWriter, r *http.Request) {
 
 func SlugPage(w http.ResponseWriter, r *http.Request) {
 	slug := api.Vars(r, "slug")
-	//fmt.Println(slug)
 	pd := PageData{Slug: slug}
 	err := pd.DomainPage(r)
 	if err != nil {
