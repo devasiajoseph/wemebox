@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>My Website</title>
+    <link rel="stylesheet" href="{{.StaticUrl}}/css/w3.css">
+    <link rel="stylesheet" href="{{.StaticUrl}}/css/theme.css">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <style>
+        .hero-image {
+    /* Use "linear-gradient" to add a darken background effect to the image (photographer.jpg). This will make the text easier to read */
+    background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url("{{.StaticUrl}}/img/map.svg");
+  
+    /* Set a specific height */
+    min-height: 500px;
+    /* Position and center the image to scale nicely on all screens */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+  
+  /* Place text in the middle of the image */
+ 
+    </style>
+  </head>
+  <body style="min-height: 1024px;">
+    {{block "hero" .}}{{end}}
+    <div class="container">
+        {{block "content" .}}{{end}}
+    </div>
+  </body>
+</html>
