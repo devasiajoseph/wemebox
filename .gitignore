@@ -45,3 +45,4 @@ test-config.yml
 .cpcache
 .lsp
 .clj-kondo/
+sites/
