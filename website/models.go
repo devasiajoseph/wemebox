@@ -58,6 +58,7 @@ type PageData struct {
 	//PageData      interface{}
 	Csrf          string
 	StaticUrl     string
+	GStaticUrl    string
 	UAuthLoggedIn bool
 	LoggedInUser  string
 	Slug          string

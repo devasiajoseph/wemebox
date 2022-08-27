@@ -40,6 +40,10 @@ func MultiStaticUrl(r *http.Request) string {
 	return "/static/" + DomainDir(r)
 }
 
+func GlobalStaticUrl() string {
+	return "/gstatic"
+}
+
 func GetMultiPaths(r *http.Request) Paths {
 	return Paths{DirPath: MultiDir(r), StaticUrl: MultiStaticUrl(r)}
 }
@@ -57,6 +61,7 @@ func RenderMultiPageTemplate(w http.ResponseWriter, r *http.Request, pd PageData
 	pagePath := MultiPagePath(paths.DirPath, pd.PageFile)
 	basePagePath := MultiPagePath(paths.DirPath, pd.BasePageFile)
 	pd.StaticUrl = MultiStaticUrl(r)
+	pd.GStaticUrl = GlobalStaticUrl()
 	if !file.FileExist(basePagePath) {
 		PageNotFound(w, r)
 		return
