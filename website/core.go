@@ -44,6 +44,7 @@ func PagePath(dirPath string, spage string) string {
 }
 
 var BinPath = BinaryPath()
+var GlobalStaticDir = AbsolutePath("gstatic")
 var StaticDir = AbsolutePath("sites/static")
 var DashboardStaticDir = AbsolutePath("static")
 
