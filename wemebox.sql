@@ -409,6 +409,7 @@ COPY public.domain (domain_id, domain_name, domain_dir) FROM stdin;
 2	palathrainfra.com	palathrainfra.com
 3	wemebox.com	wemebox.com
 4	centipair.com	centipair.com
+5	clearwayfacility.com	clearwayfacility.com
 \.
 
 
@@ -434,6 +435,9 @@ COPY public.page (page_id, page_slug, page_file, base_page_file, domain_id) FROM
 7	projects	projects.html	base.html	2
 8	home	home.html	base.html	3
 9	home	home.html	base.html	4
+10	home	home.html	base.html	5
+11	about	about.html	base.html	5
+12	contact	contact.html	base.html	5
 \.
 
 
@@ -479,7 +483,7 @@ SELECT pg_catalog.setval('public.blog_tag_blog_tag_id_seq', 1, false);
 -- Name: domain_domain_id_seq; Type: SEQUENCE SET; Schema: public; Owner: devasia
 --
 
-SELECT pg_catalog.setval('public.domain_domain_id_seq', 4, true);
+SELECT pg_catalog.setval('public.domain_domain_id_seq', 5, true);
 
 
 --
@@ -493,7 +497,7 @@ SELECT pg_catalog.setval('public.domain_user_role_role_id_seq', 1, false);
 -- Name: page_page_id_seq; Type: SEQUENCE SET; Schema: public; Owner: devasia
 --
 
-SELECT pg_catalog.setval('public.page_page_id_seq', 9, true);
+SELECT pg_catalog.setval('public.page_page_id_seq', 12, true);
 
 
 --
