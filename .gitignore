@@ -47,3 +47,4 @@ test-config.yml
 .clj-kondo/
 sites/
 wemebox-server
+build/
