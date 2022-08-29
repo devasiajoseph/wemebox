@@ -46,3 +46,4 @@ test-config.yml
 .lsp
 .clj-kondo/
 sites/
+wemebox-server
