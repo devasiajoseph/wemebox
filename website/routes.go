@@ -43,4 +43,5 @@ func AddMultiRoutes(r *mux.Router) {
 
 func Start(r *mux.Router) {
 	AddMultiRoutes(r)
+	AddApiRoutes(r)
 }

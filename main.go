@@ -14,7 +14,7 @@ func main() {
 	postgres.InitDB()
 	r := mux.NewRouter()
 	dashboard.Start(r)
-	website.AddMultiRoutes(r)
+	website.Start(r)
 	uauth.Start(r)
 	if core.Config.Ssl {
 		website.StartMultiHttps(r)

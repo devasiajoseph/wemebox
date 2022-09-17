@@ -1,7 +1,6 @@
 package website
 
 import (
-	"errors"
 	"log"
 	"net/http"
 	"strings"
@@ -13,6 +12,12 @@ type Domain struct {
 	DomainID   int    `db:"domain_id" json:"domain_id"`
 	DomainName string `db:"domain_name" json:"domain_name"`
 	DomainDir  string `db:"domain_dir" json:"domain_dir"`
+	Active     bool   `db:"active" json:"active"`
+}
+
+type Website struct {
+	DomainID   int    `db:"domain_id" json:"domain_id"`
+	DomainName string `db:"domain_name" json:"domain_name"`
 	Active     bool   `db:"active" json:"active"`
 }
 
@@ -59,38 +64,15 @@ func (d *Domain) Create(ownerID int) error {
 	return err
 }
 
-func (d *Domain) Credit(amount int, notes string) error {
-	if d.DomainID == 0 {
-		return errors.New("invalid domain ID")
-	}
-
-	trx := Trx{
-		DomainID: d.DomainID,
-		Credit:   amount,
-		Notes:    notes,
-	}
-
-	err := trx.Execute()
+func GetUserWebsites(ownerID int) ([]Website, error) {
+	db := postgres.Db
+	var wb []Website
+	sql := "select domain.domain_id,domain.domain_name,domain.active from domain left join domain_user_role" +
+		" on domain.domain_id = domain_user_role.domain_id where domain_user_role.user_account_id=$1;"
+	err := db.Select(&wb, sql, ownerID)
 	if err != nil {
-		log.Printf("error crediting domain => ID: %d", d.DomainID)
+		log.Println("error getting user websites")
+		log.Println(err)
 	}
-	return err
-}
-
-func (d *Domain) Debit(amount int, notes string) error {
-	if d.DomainID == 0 {
-		return errors.New("invalid domain ID")
-	}
-
-	trx := Trx{
-		DomainID: d.DomainID,
-		Debit:    amount,
-		Notes:    notes,
-	}
-
-	err := trx.Execute()
-	if err != nil {
-		log.Printf("error debiting domain => ID: %d", d.DomainID)
-	}
-	return err
+	return wb, err
 }

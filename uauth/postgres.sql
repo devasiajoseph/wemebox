@@ -10,7 +10,7 @@ CREATE TABLE user_account(
        country_code VARCHAR (3) NOT NULL default 'IND',
        postal_code VARCHAR(20),
        phone VARCHAR(20),
-       user_role VARCHAR(10) NULL,
+       role VARCHAR(10) not null default 'user',
        active BOOLEAN NOT NULL default false,
        created_on TIMESTAMP NOT NULL,
        last_login TIMESTAMP

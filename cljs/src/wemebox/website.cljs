@@ -13,7 +13,7 @@
   [])
 
 
-
+(def website-list (r/atom []))
 (def domain-name (r/atom {:id "domain-name" :type "text" :class "form-control" :validator v/required}))
 (def domain-active (r/atom {:id "domain-active" :type "text" :class "form-control" }))
 (def website-button (r/atom {:id "login-button" :label "Save" :on-click save-website}))
@@ -34,3 +34,10 @@
   [q]
   (println q)
   (page/render "Manage Website" website-form "app" "500px"))
+
+
+(defn website-list-view
+  []
+  [:div 
+   [:table {:class "table"}]]
+  )
