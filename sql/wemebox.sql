@@ -3,6 +3,10 @@ CREATE TABLE domain(
        domain_name varchar(255) not null unique,
        domain_dir varchar(255) not null unique
 );
+create table tag (
+       tag_id serial primary key,
+       tag_name varchar(256) not null unique
+);
 
 
 /*user tables*/
@@ -70,11 +74,27 @@ CREATE TABLE domain_user_role (
 );
 
 
-create table tag (
-       tag_id serial primary key,
-       tag_name varchar(256) not null unique
+CREATE TABLE post (
+       post_id serial primary key,
+       post_html text,
+       post_raw text,
+       domain_id integer,
+       CONSTRAINT post_domain_id_fkey FOREIGN KEY (domain_id)
+       REFERENCES domain (domain_id) MATCH SIMPLE 
+       ON DELETE CASCADE
+       
 );
 
+create table post_images (
+       post_image_id serial primary key,
+       post_image varchar(1024),
+       post_image_thumbnail varchar(1024),
+       post_id integer,
+       domain_id integer,
+       CONSTRAINT post_images_post_id_fkey FOREIGN KEY (post_id)
+       REFERENCES post (post_id) MATCH SIMPLE 
+       ON DELETE CASCADE
+);
 
 
 create table page (
@@ -141,3 +161,5 @@ create table trx(
        REFERENCES domain (domain_id) MATCH SIMPLE 
        ON DELETE CASCADE
 );
+
+
