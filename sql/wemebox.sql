@@ -76,7 +76,6 @@ CREATE TABLE domain_user_role (
 
 CREATE TABLE post (
        post_id serial primary key,
-       post_html text,
        post_raw text,
        domain_id integer,
        CONSTRAINT post_domain_id_fkey FOREIGN KEY (domain_id)
@@ -90,7 +89,6 @@ create table post_images (
        post_image varchar(1024),
        post_image_thumbnail varchar(1024),
        post_id integer,
-       domain_id integer,
        CONSTRAINT post_images_post_id_fkey FOREIGN KEY (post_id)
        REFERENCES post (post_id) MATCH SIMPLE 
        ON DELETE CASCADE
