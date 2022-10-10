@@ -15,6 +15,7 @@
 (def rts {"/" {:run home/render-home}
           "/login" {:run uauth/render-login-form}
           "/register" {:run uauth/render-register-form}
+          "/websites" {:run website/render-website-form :q true}
           "/website/edit" {:run website/render-website-form :q true}})
 
 (defn init!
