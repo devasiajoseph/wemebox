@@ -4,6 +4,8 @@ import (
 	"log"
 	"time"
 
+	"github.com/devasiajoseph/wemebox/apps/crud"
+	"github.com/devasiajoseph/wemebox/cpmath"
 	"github.com/devasiajoseph/wemebox/db/postgres"
 )
 
@@ -67,6 +69,22 @@ func (obj *Object) Save() error {
 	return obj.Update()
 }
 
+//Delete  data
 func (obj *Object) Delete() error {
-	return nil
+	err := crud.Delete("post", obj.PostID)
+	return err
+}
+
+var sqlList = "select post_id,post_raw from post where domain_id=$1 limit $2 offset $3;"
+
+func (ol *List) Fetch() error {
+	db := postgres.Db
+	ol.Offset = cpmath.Offset(ol.Page, ol.Limit)
+	err := db.Select(&ol.Data, sqlList, ol.DomainID, ol.Limit, ol.Offset)
+	if err != nil {
+		log.Println(err)
+		log.Println("Error fetching post list")
+	}
+
+	return err
 }
