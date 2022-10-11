@@ -78,6 +78,7 @@ CREATE TABLE post (
        post_id serial primary key,
        post_raw text,
        domain_id integer,
+       created TIMESTAMP not null default now(),
        CONSTRAINT post_domain_id_fkey FOREIGN KEY (domain_id)
        REFERENCES domain (domain_id) MATCH SIMPLE 
        ON DELETE CASCADE
