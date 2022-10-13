@@ -55,6 +55,23 @@ func QueryInt(r *http.Request, param string) int {
 
 }
 
+//QueryInt fetches query parameter value as integer from the request
+func Page(r *http.Request) int {
+	val, err := strconv.Atoi(r.URL.Query().Get("page"))
+	if err != nil {
+		return 1
+	}
+	return val
+}
+
+func Limit(r *http.Request) int {
+	val, err := strconv.Atoi(r.URL.Query().Get("limit"))
+	if err != nil {
+		return 50
+	}
+	return val
+}
+
 //PostInt fetches post parameter value as integer from the request
 func PostInt(r *http.Request, param string) int {
 	id, err := strconv.Atoi(r.FormValue(param))

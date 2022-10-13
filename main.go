@@ -1,6 +1,7 @@
 package main
 
 import (
+	"github.com/devasiajoseph/wemebox/apps/post"
 	"github.com/devasiajoseph/wemebox/core"
 	"github.com/devasiajoseph/wemebox/dashboard"
 	"github.com/devasiajoseph/wemebox/db/postgres"
@@ -16,6 +17,7 @@ func main() {
 	dashboard.Start(r)
 	website.Start(r)
 	uauth.Start(r)
+	post.Start(r)
 	if core.Config.Ssl {
 		website.StartMultiHttps(r)
 	} else {

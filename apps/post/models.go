@@ -1,6 +1,7 @@
 package post
 
 import (
+	"database/sql"
 	"log"
 	"time"
 
@@ -34,6 +35,7 @@ type List struct {
 
 var sqlInsert = "insert into post (post_raw,domain_id) values (:post_raw,:domain_id) returning post_id;"
 var sqlUpdate = "update post set post_raw=:post_raw where post_id=:post_id;"
+var sqlGet = "select post_raw,created from post where post_id=$1;"
 
 func (obj *Object) Create() error {
 	db := postgres.Db
@@ -80,11 +82,26 @@ var sqlList = "select post_id,post_raw from post where domain_id=$1 limit $2 off
 func (ol *List) Fetch() error {
 	db := postgres.Db
 	ol.Offset = cpmath.Offset(ol.Page, ol.Limit)
+
 	err := db.Select(&ol.Data, sqlList, ol.DomainID, ol.Limit, ol.Offset)
 	if err != nil {
 		log.Println(err)
 		log.Println("Error fetching post list")
 	}
 
+	return err
+}
+
+func (obj *Object) Data() error {
+	db := postgres.Db
+	err := db.Get(obj, sqlGet, obj.PostID)
+	if err != nil {
+		if err == sql.ErrNoRows {
+			obj.PostID = 0
+			return nil
+		}
+		log.Println(err)
+		log.Println("Error getting post")
+	}
 	return err
 }
